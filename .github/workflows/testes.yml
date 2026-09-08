@@ -11,6 +11,9 @@ jobs:
   testes:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: template_aluno
 
     steps:
       - name: Checkout

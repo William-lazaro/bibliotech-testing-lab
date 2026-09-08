@@ -1,106 +1,77 @@
-  # Roteiro de Testes — BiblioTech
-
-Utilize o modelo abaixo para documentar os casos de teste.
-
-Copie a estrutura para cada novo caso.
-
----
-
-# CT-XX
-
-## Requisito
-
-RFXX
-
-## Título
-
-Descreva resumidamente o caso.
-
-## Tipo
-
-- [ ] Caixa Preta
-- [ ] Caixa Branca
-
-## Prioridade
-
-- [ ] Alta
-- [ ] Média
-- [ ] Baixa
+# Roteiro de Testes — BiblioTech
 
 ## Objetivo
 
-Descreva o que o teste pretende verificar.
+Verificar se as funções do BiblioTech atendem aos requisitos RF01, RF02 e RF03, incluindo cenários válidos, inválidos e valores de fronteira.
 
-## Pré-condições
+## Pré-condições gerais
 
-Informe as condições necessárias antes da execução.
+- Python e pytest instalados;
+- sistema disponível;
+- requisitos definidos;
+- testes executados na pasta `template_aluno`.
 
-## Dados de teste
+## Casos de teste — RF01: Permissão para empréstimo
 
-Informe todos os valores utilizados.
+| ID | Cenário | Dados de teste | Resultado esperado | Prioridade |
+|---|---|---|---|---|
+| CT-01 | Usuário válido sem empréstimos | `True, False, 0` | `True` | Alta |
+| CT-02 | Usuário inativo | `False, False, 0` | `False` | Alta |
+| CT-03 | Usuário com pendência | `True, True, 0` | `False` | Alta |
+| CT-04 | Usuário no limite de três empréstimos | `True, False, 3` | `False` | Alta |
+| CT-05 | Usuário com dois empréstimos | `True, False, 2` | `True` | Alta |
+| CT-06 | Usuário acima do limite | `True, False, 4` | `False` | Alta |
 
-## Passos
+## Casos de teste — RF02: Multa por atraso
 
-1.
-2.
-3.
+| ID | Cenário | Dias de atraso | Resultado esperado | Prioridade |
+|---|---|---:|---:|---|
+| CT-07 | Sem atraso | 0 | R$ 0,00 | Alta |
+| CT-08 | Atraso negativo | -1 | R$ 0,00 | Média |
+| CT-09 | Primeiro dia de atraso | 1 | R$ 2,00 | Alta |
+| CT-10 | Três dias de atraso | 3 | R$ 6,00 | Média |
+| CT-11 | Limite de sete dias | 7 | R$ 14,00 | Alta |
+| CT-12 | Primeiro dia acima do limite | 8 | R$ 17,00 | Alta |
+| CT-13 | Dez dias de atraso | 10 | R$ 23,00 | Média |
 
-## Resultado esperado
+## Casos de teste — RF03: Classificação de atraso
 
-Descreva exatamente o comportamento esperado.
+| ID | Cenário | Dias de atraso | Resultado esperado | Prioridade |
+|---|---|---:|---|---|
+| CT-14 | Sem atraso | 0 | `sem atraso` | Alta |
+| CT-15 | Primeiro dia de atraso | 1 | `atraso leve` | Alta |
+| CT-16 | Limite do atraso leve | 7 | `atraso leve` | Alta |
+| CT-17 | Início do atraso moderado | 8 | `atraso moderado` | Alta |
+| CT-18 | Limite do atraso moderado | 30 | `atraso moderado` | Alta |
+| CT-19 | Início do atraso grave | 31 | `atraso grave` | Alta |
 
-## Resultado obtido
+## Procedimento de execução
 
-Preencher depois da execução.
+1. Preparar os dados definidos em cada caso.
+2. Executar a função correspondente por meio do pytest.
+3. Comparar o resultado obtido com o resultado esperado.
+4. Registrar se o caso passou ou falhou.
+5. Documentar qualquer comportamento diferente do requisito.
 
-## Status
+## Pós-condição
 
-- [ ] PASSOU
-- [ ] FALHOU
+Os resultados ficam registrados como evidência para a decisão final de QA.
 
-## Técnica utilizada
+## Resultado da execução
 
-- [ ] Particionamento de equivalência
-- [ ] Análise de valor-limite
-- [ ] Cenário positivo
-- [ ] Cenário negativo
-- [ ] Caminho estrutural
-- [ ] Outro
+- Total de testes executados: 20
+- Testes aprovados: 19
+- Testes reprovados: 1
+- Cobertura de linhas e branches: 100%
+- Requisito com defeito: RF01
+- Caso que encontrou o defeito: CT-04
 
-## Evidência
+### Defeito encontrado
 
-Informe saída do pytest, mensagem de erro ou outra evidência relevante.
+O sistema permitiu um novo empréstimo para um usuário ativo, sem pendências e com exatamente três empréstimos ativos.
 
-## Observações
+O resultado esperado era `False`, pois o RF01 determina que o usuário deve possuir menos de três empréstimos ativos. Entretanto, o resultado obtido foi `True`.
 
--
+### Status
 
----
-
-# Registro de Defeito
-
-Utilize esta estrutura quando houver divergência.
-
-## BUG-XX
-
-### Requisito associado
-
-### Caso de teste
-
-### Entrada utilizada
-
-### Resultado esperado
-
-### Resultado obtido
-
-### Prioridade sugerida
-
-- [ ] Alta
-- [ ] Média
-- [ ] Baixa
-
-### Evidência
-
-### Justificativa
-
-### Observações
+Reprovado. O defeito deve ser corrigido antes da liberação para produção.

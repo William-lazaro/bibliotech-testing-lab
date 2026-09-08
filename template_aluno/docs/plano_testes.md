@@ -1,105 +1,57 @@
 # Mini Plano de Testes — BiblioTech
 
-## 1. Identificação
+## Responsável
 
-**Equipe:**
+William Lázaro
 
-**Integrantes:**
+## Escopo
 
-**Data:**
+Testar os requisitos RF01, RF02 e RF03 do módulo de empréstimos do BiblioTech.
 
----
+## Fora do escopo
 
-## 2. Objetivo
+Interface gráfica, banco de dados, segurança, integração e desempenho.
 
-Descreva o objetivo da atividade de teste.
+## Estratégia
 
-Resposta:
+- Testes de caixa preta baseados nos requisitos.
+- Testes de caixa branca baseados na estrutura do código.
+- Testes unitários automatizados com pytest.
+- Análise de valores de fronteira e partições de equivalência.
 
----
+## Ambiente
 
-## 3. Escopo
+- Python
+- pytest
+- pytest-cov
+- Visual Studio Code
+- GitHub e GitHub Actions
 
-### Funcionalidades que serão testadas
+## Critério de entrada
 
--
+Código-fonte disponível, requisitos definidos e ambiente de testes configurado.
 
-### Fora do escopo
+## Critérios de saída
 
--
+- RF01, RF02 e RF03 testados;
+- cenários positivos e negativos executados;
+- defeitos encontrados registrados;
+- cobertura de linhas e branches igual ou superior a 90%;
+- Pull Request criado com as evidências.
 
----
+## Riscos
 
-## 4. Estratégia
+- Tempo limitado para executar a atividade;
+- cobertura incompleta;
+- requisitos interpretados incorretamente;
+- defeitos em valores de fronteira.
 
-### Caixa Preta
+## Entregáveis
 
-Marque as técnicas utilizadas:
-
-- [ ] Particionamento de equivalência
-- [ ] Análise de valores-limite
-- [ ] Cenários positivos
-- [ ] Cenários negativos
-
-### Caixa Branca
-
-Preencher após o checkpoint.
-
-Aspectos estruturais analisados:
-
--
-
----
-
-## 5. Ambiente
-
-**Sistema operacional:**
-
-**Versão do Python:**
-
-**Framework de testes:**
-
-**Repositório:**
-
----
-
-## 6. Critérios de entrada
-
-Quais condições devem estar atendidas antes da execução dos testes?
-
--
-
----
-
-## 7. Critérios de saída
-
-Quando a equipe considerará a atividade de teste concluída?
-
--
-
----
-
-## 8. Riscos
-
-| Risco | Impacto | Mitigação |
-|---|---|---|
-| | | |
-| | | |
-
----
-
-## 9. Entregáveis
-
-- [ ] Casos de teste
-- [ ] Testes automatizados
-- [ ] Matriz de rastreabilidade
-- [ ] Evidência de cobertura
-- [ ] Registro de defeitos
-- [ ] Pull Request
-- [ ] Parecer de QA
-
----
-
-## 10. Observações
-
--
+- plano de testes;
+- casos e roteiros de teste;
+- matriz de rastreabilidade;
+- testes automatizados;
+- relatório de cobertura;
+- Pull Request;
+- parecer final de QA.
